@@ -1,26 +1,15 @@
-// components/dashboard/app-sidebar/nav-user/index.tsx
 'use client';
 
 import {
+  BadgeCheck,
+  Bell,
   ChevronsUpDown,
+  CreditCard,
   LogOut,
-  File,
-  BadgeQuestionMark,
-  Settings,
-  Contact,
+  Sparkles,
 } from 'lucide-react';
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,7 +26,14 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 
-export const NavUser = (): React.JSX.Element => {
+export const NavUser = ({
+  user,
+}: {
+  user: {
+    name: string;
+    email: string;
+  };
+}) => {
   const { isMobile } = useSidebar();
 
   return (
@@ -53,12 +49,10 @@ export const NavUser = (): React.JSX.Element => {
                 <AvatarFallback className='rounded-lg'>MP</AvatarFallback>
               </Avatar>
               <div className='grid flex-1 text-left text-sm leading-tight'>
-                <span className='truncate font-medium'>Marvin Pacis</span>
-                <span className='truncate text-xs'>
-                  contact@marvinpacis.com
-                </span>
+                <span className='truncate font-medium'>{user.name}</span>
+                <span className='truncate text-xs'>{user.email}</span>
               </div>
-              <ChevronsUpDown className='ml-auto size-4 text-gray-400' />
+              <ChevronsUpDown className='ml-auto size-4' />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -73,54 +67,38 @@ export const NavUser = (): React.JSX.Element => {
                   <AvatarFallback className='rounded-lg'>MP</AvatarFallback>
                 </Avatar>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-medium'>Marvin Pacis</span>
-                  <span className='truncate text-xs'>
-                    contact@marvinpacis.com
-                  </span>
+                  <span className='truncate font-medium'>{user.name}</span>
+                  <span className='truncate text-xs'>{user.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Contact />
-                Role:
-                <span className='capitalize'>Admin</span>
+                <Sparkles />
+                Upgrade to Pro
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <File />
-                Documents
+                <BadgeCheck />
+                Account
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <BadgeQuestionMark />
-                Help
+                <CreditCard />
+                Billing
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Settings />
-                Settings
+                <Bell />
+                Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <DropdownMenuItem onSelect={e => e.preventDefault()}>
-                  <LogOut />
-                  Log out
-                </DropdownMenuItem>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Log out of your account?</AlertDialogTitle>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction>Log out</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <DropdownMenuItem>
+              <LogOut />
+              Log out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
