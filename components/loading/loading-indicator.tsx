@@ -1,6 +1,6 @@
 import { Loader2 } from 'lucide-react';
 
-const Loading = (): React.JSX.Element => {
+export const LoadingIndicator = (): React.JSX.Element => {
   return (
     <div className='flex h-screen items-center justify-center'>
       <Loader2 className='text-muted-foreground h-8 w-8 animate-spin' />
@@ -8,5 +8,3 @@ const Loading = (): React.JSX.Element => {
     </div>
   );
 };
-
-export default Loading;

@@ -24,6 +24,8 @@ import { columns } from '@/components/patients/columns';
 
 import { usePatientStore } from '@/stores/patientStore';
 import { useEffect } from 'react';
+import { LoadingIndicator } from '@/components/loading/loading-indicator';
+import { ErrorIndicator } from '@/components/error/error-indicator';
 
 interface GetPatientsData {
   patients: Patient[];
@@ -40,8 +42,9 @@ const DashboardPage = () => {
     }
   }, [data, setPatients]);
 
-  if (loading) return <p className='p-4'>Loading patients...</p>;
-  if (error) return <p className='p-4 text-red-500'>Error: {error.message}</p>;
+  if (loading) return <LoadingIndicator />;
+
+  if (error) return <ErrorIndicator />;
 
   return (
     <SidebarProvider>
