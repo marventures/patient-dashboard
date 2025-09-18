@@ -30,11 +30,14 @@ import { usePatientStore } from '@/stores/patientStore';
 import { useEffect } from 'react';
 
 const patientSchema = z.object({
-  patientID: z.number().int().positive(), // now a number
-  name: z.string().min(1, 'Name is required').max(50),
-  age: z.coerce.number().min(0, 'Age must be positive'),
-  gender: z.enum(['Male', 'Female', 'Other']),
-  diagnosis: z.string().min(1, 'Diagnosis is required'),
+  patientID: z.number().int().positive(),
+  name: z.string().min(1).max(50),
+  age: z
+    .number()
+    .min(0)
+    .transform(val => Number(val)),
+  gender: z.enum(['Male', 'Female']),
+  diagnosis: z.string().min(1),
   status: z.enum([
     'registered',
     'admitted',
@@ -44,7 +47,7 @@ const patientSchema = z.object({
   ]),
   doctor: z.enum(['Dr. Smith', 'Dr. Johnson', 'Dr. Lee']),
   department: z.enum(['Cardiology', 'Neurology', 'Oncology', 'Pediatrics']),
-  admissionDate: z.string().min(1, 'Admission date is required'),
+  admissionDate: z.string().min(1),
   dischargeDate: z.string().optional().nullable(),
 });
 
@@ -63,8 +66,9 @@ export const DialogBase = ({ open, setOpen }: DialogBaseProps) => {
     setValue,
     formState: { errors },
   } = useForm<PatientFormValues>({
-    resolver: zodResolver(patientSchema) as any,
+    resolver: zodResolver(patientSchema),
     defaultValues: {
+      patientID: 0,
       name: '',
       age: 0,
       gender: 'Male',
@@ -84,7 +88,7 @@ export const DialogBase = ({ open, setOpen }: DialogBaseProps) => {
   useEffect(() => {
     if (open) {
       const lastID = patients.length
-        ? Number(patients[patients.length - 1].patientID) // ✅ convert to number
+        ? Number(patients[patients.length - 1].patientID)
         : 0;
       setValue('patientID', lastID + 1);
     }
@@ -174,7 +178,6 @@ export const DialogBase = ({ open, setOpen }: DialogBaseProps) => {
               <SelectContent>
                 <SelectItem value='Male'>Male</SelectItem>
                 <SelectItem value='Female'>Female</SelectItem>
-                <SelectItem value='Other'>Other</SelectItem>
               </SelectContent>
             </Select>
             {errors.gender && (

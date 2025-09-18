@@ -3,7 +3,7 @@ export type Patient = {
   patientID: number;
   name: string;
   age: number;
-  gender: 'Male' | 'Female' | 'Other';
+  gender: 'Male' | 'Female';
   diagnosis: string;
   status:
     | 'registered'
