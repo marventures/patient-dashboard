@@ -37,7 +37,9 @@ export const DataTableRowActions = <TData,>({
       <DropdownMenuContent align='end' className='w-[160px]'>
         <DropdownMenuItem>View</DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => navigator.clipboard.writeText(patient.patientID)}
+          onClick={() =>
+            navigator.clipboard.writeText(patient.patientID.toString())
+          }
         >
           Copy ID
         </DropdownMenuItem>
