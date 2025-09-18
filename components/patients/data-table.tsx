@@ -77,11 +77,7 @@ export const DataTable = <TData, TValue>({
   return (
     <div className='space-y-4'>
       {/* Table Toolbar */}
-      <DataTableToolbar
-        table={table}
-        buttonClassName='bg-purple hover:bg-light-purple'
-        filterInputPlaceholder='Filter ideas or opportunities...'
-      />
+      <DataTableToolbar table={table} />
       {/* Table */}
       <div className='overflow-hidden rounded-md border'>
         <Table>
