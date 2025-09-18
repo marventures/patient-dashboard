@@ -11,8 +11,8 @@ export type Patient = {
     | 'under-treatment'
     | 'scheduled'
     | 'discharged';
-  doctor: string;
-  department: string;
+  doctor: 'Dr. Smith' | 'Dr. Johnson' | 'Dr. Lee';
+  department: 'Cardiology' | 'Neurology' | 'Oncology' | 'Pediatrics';
   admissionDate: string;
   dischargeDate?: string | null;
 };
