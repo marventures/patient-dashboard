@@ -12,7 +12,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Patient } from '@/data/schema';
+import { Patient } from '@/types/patient';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;

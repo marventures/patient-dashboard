@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { patientStatuses } from '@/data/data';
+import { patientStatuses } from '@/constants/patientStatuses';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 // import { DialogBase } from './dialog-base';

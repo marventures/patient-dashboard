@@ -3,8 +3,8 @@
 import { ColumnDef } from '@tanstack/react-table';
 
 import { Checkbox } from '@/components/ui/checkbox';
-import { patientStatuses } from '@/data/data';
-import { Patient } from '@/data/schema';
+import { patientStatuses } from '@/constants/patientStatuses';
+import { Patient } from '@/types/patient';
 
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
