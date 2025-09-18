@@ -1,6 +1,6 @@
 // This type defines the shape of a Patient record.
 export type Patient = {
-  patientID: string;
+  patientID: number;
   name: string;
   age: number;
   gender: 'Male' | 'Female' | 'Other';

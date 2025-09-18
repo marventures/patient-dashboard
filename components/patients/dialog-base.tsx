@@ -26,9 +26,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { usePatientStore } from '@/stores/patientStore';
+import { useEffect } from 'react';
 
 const patientSchema = z.object({
-  patientID: z.string().min(1, 'Patient ID is required'),
+  patientID: z.number().int().positive(), // now a number
   name: z.string().min(1, 'Name is required').max(50),
   age: z.coerce.number().min(0, 'Age must be positive'),
   gender: z.enum(['Male', 'Female', 'Other']),
@@ -63,7 +65,6 @@ export const DialogBase = ({ open, setOpen }: DialogBaseProps) => {
   } = useForm<PatientFormValues>({
     resolver: zodResolver(patientSchema) as any,
     defaultValues: {
-      patientID: '',
       name: '',
       age: 0,
       gender: 'Male',
@@ -76,8 +77,21 @@ export const DialogBase = ({ open, setOpen }: DialogBaseProps) => {
     },
   });
 
+  const patients = usePatientStore(state => state.patients);
+  const addPatient = usePatientStore(state => state.addPatient);
+
+  // Auto-populate patientID when dialog opens
+  useEffect(() => {
+    if (open) {
+      const lastID = patients.length
+        ? Number(patients[patients.length - 1].patientID) // ✅ convert to number
+        : 0;
+      setValue('patientID', lastID + 1);
+    }
+  }, [open, patients, setValue]);
+
   const onSubmit = (data: PatientFormValues) => {
-    console.log('Form Submitted:', data);
+    addPatient(data);
     setOpen(false);
     reset();
   };
@@ -109,7 +123,13 @@ export const DialogBase = ({ open, setOpen }: DialogBaseProps) => {
             <Label htmlFor='patientID' className='mb-1'>
               Patient ID
             </Label>
-            <Input id='patientID' {...register('patientID')} />
+            <Input
+              id='patientID'
+              {...register('patientID', { valueAsNumber: true })}
+              readOnly
+              type='number'
+              disabled
+            />
             {errors.patientID && (
               <p className='text-xs text-red-500'>{errors.patientID.message}</p>
             )}

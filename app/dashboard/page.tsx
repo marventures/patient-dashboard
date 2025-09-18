@@ -22,12 +22,23 @@ import {
 import { DataTable } from '@/components/patients/data-table';
 import { columns } from '@/components/patients/columns';
 
+import { usePatientStore } from '@/stores/patientStore';
+import { useEffect } from 'react';
+
 interface GetPatientsData {
   patients: Patient[];
 }
 
 const DashboardPage = () => {
   const { data, loading, error } = useQuery<GetPatientsData>(GET_PATIENTS);
+  const patients = usePatientStore(state => state.patients);
+  const setPatients = usePatientStore(state => state.setPatients);
+
+  useEffect(() => {
+    if (data?.patients) {
+      setPatients(data.patients);
+    }
+  }, [data, setPatients]);
 
   if (loading) return <p className='p-4'>Loading patients...</p>;
   if (error) return <p className='p-4 text-red-500'>Error: {error.message}</p>;
@@ -59,7 +70,7 @@ const DashboardPage = () => {
         <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
           <DataTable
             columns={columns}
-            data={data?.patients ?? []}
+            data={patients}
             tableHeadClassName='bg-purple'
           />
         </div>
