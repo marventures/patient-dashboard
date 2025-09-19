@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Patient Management App
 
-## Getting Started
+This repository contains the frontend code for a patient management application. It provides a user interface for adding and viewing patient records.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Project Overview](#project-overview)
+  - [Features](#features)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [Built With](#built-with)
+- [Author](#author)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is a frontend application designed to manage patient information and support telehealth consultations. It demonstrates best practices in React, TypeScript, Tailwind CSS, and Apollo Client.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Features
 
-## Learn More
+- ✅ Dynamic filtering of patients (filtering, search and sorting functionality)
 
-To learn more about Next.js, take a look at the following resources:
+- ✅ Pagination
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ✅ Basic form for adding a new patient
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Screenshot
 
-## Deploy on Vercel
+![ Patient Management Dashboard Screenshot](./assets/images/image.png)
+![ Patient Management Dashboard Screenshot](./assets/images/image2.png)
+![ Patient Management Dashboard Screenshot](./assets/images/image3.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Links
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Live Link](https://patient-dashboard-livid.vercel.app)
+
+## Built With
+
+- [React](https://react.dev/) with [TypeScript](https://www.typescriptlang.org/) – A JavaScript library for building user interfaces with static type safety.
+- [Next.js](https://nextjs.org/) – A React framework for building fast, modern web applications.
+- [Apollo Client](https://www.apollographql.com/docs/react/) – A GraphQL client for data fetching.
+- [Tailwind CSS](https://tailwindcss.com/) – A utility-first CSS framework for styling.
+
+### State Management & Forms
+
+- [Zustand](https://zustand-demo.pmnd.rs/) – A small, fast state management library.
+- [React Hook Form](https://react-hook-form.com/) – Performant form validation with React hooks.
+- [Zod](https://zod.dev/) – TypeScript-first schema validation.
+
+### Developer Tools
+
+- [ESLint](https://eslint.org/) – Linting tool for maintaining code quality.
+- [Prettier](https://prettier.io/) – Opinionated code formatter.
+- [Prettier Plugin Tailwind CSS](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) – Auto-sorts Tailwind classes.
+
+## Author
+
+- GitHub - [marventures](https://github.com/marventures)
+- LinkedIn - [Marvin Morales Pacis](https://www.linkedin.com/in/marventures/)
