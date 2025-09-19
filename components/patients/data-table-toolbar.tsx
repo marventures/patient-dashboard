@@ -10,7 +10,6 @@ import { patientStatuses } from '@/constants/patientStatuses';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { DialogBase } from './dialog-base';
-// import { DialogBase } from './dialog-base';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;

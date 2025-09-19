@@ -1,5 +1,3 @@
-// components/patients/dialog-base.tsx
-
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -32,10 +30,7 @@ import { useEffect } from 'react';
 const patientSchema = z.object({
   patientID: z.number().int().positive(),
   name: z.string().min(1).max(50),
-  age: z
-    .number()
-    .min(0)
-    .transform(val => Number(val)),
+  age: z.number().min(0),
   gender: z.enum(['Male', 'Female']),
   diagnosis: z.string().min(1),
   status: z.enum([
@@ -155,7 +150,11 @@ export const DialogBase = ({ open, setOpen }: DialogBaseProps) => {
             <Label htmlFor='age' className='mb-1'>
               Age
             </Label>
-            <Input id='age' type='number' {...register('age')} />
+            <Input
+              id='age'
+              type='number'
+              {...register('age', { valueAsNumber: true })}
+            />
             {errors.age && (
               <p className='text-xs text-red-500'>{errors.age.message}</p>
             )}
